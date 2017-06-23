@@ -1,16 +1,15 @@
 ## 目录
-- [frame](#frame) 框架
-    - [controller](#controller) 控制器
-        - [Action.class.php](#Action.class.php) 控制器父类
-        - [App.class.php](#App.class.php) 框架核心运行入口
-        - [common.php](#common.php) 公共方法
-        - [Dd.class.php](#Dd.class.php) 数据库操作类
-        - [Error.class.php](#Error.class.php) 错误信息类
-        - [Log.class.php](#Log.class.php) 日志类
-        - [Model.class.php](#Model.class.php) 模型父类
-        - [View.class.php](#View.class.php) 视图父类
-    - [core](#core) 核心代码
-    - [module](#module) 模型
-    - [view](#view) 视图
-    - [config.php](#config.php) 配置文件
+- [frame](#frame) 项目目录
+    - [MinPHP](#MinPHP) 框架目录
+        - [common](#common) 公共方法目录
+            - [common.php](#common.php) 公共方法
+        - [core](#core) 核心代码
+            - [Action.class.php](#Action.class.php) 控制器父类
+            - [App.class.php](#App.class.php) 框架核心运行入口
+            - [Dd.class.php](#Dd.class.php) 数据库操作类
+            - [Error.class.php](#Error.class.php) 错误信息类
+            - [Log.class.php](#Log.class.php) 日志类
+            - [Model.class.php](#Model.class.php) 模型父类
+            - [View.class.php](#View.class.php) 视图父类
+        - [lang](#lang) 语言包
     - [index.php](#index.php) 入口文件

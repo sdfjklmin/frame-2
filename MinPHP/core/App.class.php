@@ -126,7 +126,6 @@ class App
 
 		}else{
 			# 参数模式
-	
 			$plat 		= isset($_REQUEST['p']) ? trim($_REQUEST['p']) : 'Admin';
 			$monitor 	= isset($_REQUEST['c']) ? ucfirst(strtolower($_REQUEST['c'])) : 'Index';
 			$method 	= isset($_REQUEST['a']) ? $_REQUEST['a'] : 'index';
