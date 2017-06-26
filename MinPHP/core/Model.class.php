@@ -80,6 +80,7 @@ class Model
     {
         if(empty($d) || !is_array($d))
             pr_e('参数错误') ;
+        $this->db->_doField($d);
         $where  = '' ;
         $set    =   '' ;
         foreach($d as $k => $v)
@@ -95,8 +96,27 @@ class Model
         return $this->db->save($set);
     }
 
+    # 删除
     public function del()
     {
         return $this->db->del();
+    }
+
+    # 新增
+    public function add($d=[])
+    {
+        if(empty($d))
+            pr_e('缺少新增参数');
+        $this->db->_doField($d);
+        $field = '' ;
+        $value = '' ;
+        foreach($d as $k => $v)
+        {
+            $field .= '`'.$k.'`,' ;
+            $value .= '"'.$v.'",' ;
+        }
+        $field = rtrim($field,',');
+        $value = rtrim($value,',');
+        return $this->db->add($field,$value);
     }
 }

@@ -9,6 +9,9 @@ class Db
     # 连接对象
     protected $linkDb = null ;
 
+    # 系统连接对象
+    protected $sysDb  = null ;
+
     # 数据表名称
     protected $tab ;
 
@@ -20,6 +23,9 @@ class Db
 
     # 查询字段
     protected $field = '*' ;
+
+    # 数据表字段
+    protected $tabField = '' ;
 
     # 查询条件
     protected $where = '' ;
@@ -36,6 +42,9 @@ class Db
     # 删除表达式
     protected $delSql=' DELETE FROM %TAB% %WHERE% ' ;
 
+    # 新增表达式
+    protected $addSql = ' INSERT INTO %TAB% ( %FIELD% ) VALUES ( %VALUE% ) ' ;
+
     public function __construct($name='',$connect='')
     {
 
@@ -51,12 +60,14 @@ class Db
         if(!empty($name)) {
             $this->tab = ltrim($this->tabFix.$name) ;
         }
+
+        # 当前数据库连接
         $this->connect($this->config) ;
 
     }
 
     # 数据库连接
-    public function connect($config = []) {
+    private function connect($config = []) {
 
         static $linkDb = [] ;
         # 参数判断
@@ -82,7 +93,6 @@ class Db
             }
         }
 
-
         try{
             # 连接参数
             $dbh = new PDO($config['DB_TYPE'].':host='.$config['DB_HOST'].';dbname='.$config['DB_NAME'], $config['DB_ROOT'],$config['DB_PWD']);
@@ -90,15 +100,78 @@ class Db
             $dbh->exec('set names utf8');
             $linkDb[0] = $dbh ;
             $this->linkDb =  $linkDb[0] ;
+            if(isset($this->tab) && !empty($this->tab)) {
+                # mysql系统连接
+                $this->sysConnect($config) ;
+                # 获取对应表字段
+                $this->getTabField($config['DB_NAME']);
+
+
+            }
         }catch(PDOException $e){
             throw new PDOException($e->getMessage())  ;
         }
         return ;
     }
 
+    # mysql information_schema连接
+    protected function sysConnect($config)
+    {
+        static $linkSys = [] ;
+        # 连接优化
+        if(!empty($linkSys)) {
+            $this->sysDb = $linkSys[0] ;
+            return ;
+        }
+        $sysDb = new PDO($config['DB_TYPE'].':host='.$config['DB_HOST'].';dbname=information_schema', $config['DB_ROOT'],$config['DB_PWD']);
+        $sysDb->exec('set names utf8');
+        $this->sysDb = $sysDb ;
+        $linkSys[0]  = $sysDb ;
+        return ;
+
+    }
+
+    # 获取对应表字段
+    protected function getTabField($db)
+    {
+        $sql = " SELECT	GROUP_CONCAT(COLUMN_NAME) AS  tabField
+                FROM `COLUMNS`
+                WHERE `TABLE_SCHEMA` LIKE '%".$db."%'AND `TABLE_NAME` LIKE '%".$this->tab."%'
+                GROUP BY TABLE_NAME
+                LIMIT 0,300 " ;
+        $info = $this->sysDb->query($sql);
+
+        $r = '' ;
+        if(!empty($info)) {
+            while($row = $info->fetch(PDO::FETCH_ASSOC)){
+                $r = $row ;
+            }
+        }
+        $this->tabField = $r['tabField'] ;
+        return ;
+    }
+
+    # 查询过滤字段
+    protected function _field()
+    {
+        if(($this->field != '*') && $this->tabField) {
+            $field = explode(',',$this->field);
+            $tabField = explode(',',$this->tabField);
+            $diff = array_diff($field,$tabField);
+            if(!empty($diff)) {
+                foreach($diff as $k => $v)
+                {
+                    unset($field[$k]) ;
+                }
+            }
+            $this->field = implode(',',$field) ;
+        }
+    }
+
     # 查询数据
     public function select()
     {
+        $this->_field();
         $sql   = str_replace(
             ['%FIELDS%','%TAB%','%WHERE%','%GROUP%','%ORDER%','%LIMIT%'],
             [$this->field,$this->tab,$this->where,'','',''],
@@ -143,21 +216,47 @@ class Db
     # 保存操作
     public function save($set)
     {
-        $sql   = str_replace(['%TAB%','%DATA%','%WHERE%'],[$this->tab,$set,$this->where],$this->upSql) ;
+        return $this->_do(__FUNCTION__,func_get_args()) ;
+    }
+
+    # 删除操作
+    public function del()
+    {
+        return $this->_do(__FUNCTION__,func_get_args()) ;
+    }
+
+    # 新增操作
+    public function add($f,$v)
+    {
+        return $this->_do(__FUNCTION__,func_get_args()) ;
+    }
+
+    # 操作公类(增,删,改)
+    protected function _do($f,$arv)
+    {
+        $sqlType    =   [
+            'add'   =>str_replace(['%TAB%','%FIELD%','%VALUE%'],[$this->tab,@$arv[0],@$arv[1]],$this->addSql),
+            'del'   =>str_replace(['%TAB%','%WHERE%'],[$this->tab,$this->where],$this->delSql) ,
+            'save'  =>str_replace(['%TAB%','%DATA%','%WHERE%'],[$this->tab,@$arv[0],$this->where],$this->upSql),
+        ]  ;
+        $sql    =   $sqlType[$f];
         $data = $this->linkDb->prepare($sql);
         if(!empty($data))
             $this->queryStr = $data->queryString ;
         return $data->execute();
     }
 
-    public function del()
+    # 数据字段过滤
+    public function _doField(&$d)
     {
-        if(empty($this->where))
-            pr_e('缺少条件');
-        $sql   = str_replace(['%TAB%','%WHERE%'],[$this->tab,$this->where],$this->delSql) ;
-        $data = $this->linkDb->prepare($sql);
-        if(!empty($data))
-            $this->queryStr = $data->queryString ;
-        return $data->execute();
+        $tabField = explode(',',$this->tabField);
+        $diff  = array_diff(array_keys($d),$tabField) ;
+        if(!empty($diff)) {
+            foreach($diff as $k => $v)
+            {
+                unset($d[$v]);
+            }
+        }
     }
+
 }
