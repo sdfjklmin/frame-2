@@ -18,3 +18,4 @@
     - [config.php](#config.php) 数据配置
 
     谢谢您的查阅,此框架正在持续更新中,请把您的宝贵意见发送至[735305610@qq.com](https://mail.qq.com/),我会积极采纳的,谢谢!
+    <a herf="http://www.baidu.com" target="_blank">test</a>
