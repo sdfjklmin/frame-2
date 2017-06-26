@@ -8,7 +8,8 @@ class IndexController extends Action
     public function index()
     {
         $d = module('Index')->index() ;
-        pr($d);
+        $this->assign('info',$d) ;
+        $this->dis('show') ;
     }
 
     public function abc()

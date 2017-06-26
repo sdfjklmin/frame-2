@@ -246,7 +246,7 @@ class Db
         return $data->execute();
     }
 
-    # 数据字段过滤
+    # 数据字段过滤 .top
     public function _doField(&$d)
     {
         $tabField = explode(',',$this->tabField);

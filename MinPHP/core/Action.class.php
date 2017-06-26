@@ -6,11 +6,16 @@ abstract class Action{
     protected $wVar = array() ;
     public function __construct()
     {
+        $this->view = new View() ;
     }
 
     # 页面显示
     public function dis($str='',$cache=false)
     {
+        # 前端数据解析
+        extract($this->wVar) ;
+
+        # 对应页面
         $v = MONITOR ; # 文件夹
         $h = METHOD ;     # 请求页面
 

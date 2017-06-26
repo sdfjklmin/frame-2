@@ -15,7 +15,7 @@ class IndexModule
 //        ] ;
 //        $d = D('BUser')->add($data);
 //        $d = D('BUser')->save(['name'=>'梦醒时分','age'=>10,'id'=>14,'abc222'=>'abc1','def2323'=>'def2']);
-          $d = D('BUser')->field('test,abc,age,def,id,ghi')->select() ;
-        pr($d,D()->endSql());
+          $d = D('BUser')->select() ;
+          return $d ;
     }
 }
