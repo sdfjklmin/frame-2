@@ -12,4 +12,9 @@
             - [Model.class.php](#Model.class.php) 模型父类
             - [View.class.php](#View.class.php) 视图父类
         - [lang](#lang) 语言包
-    - [index.php](#index.php) 入口文件
+            - [tip.php] (#tip.php) 系统提示文件
+        - [MinPHP.php] (#MinPHP.php) 框架入口文件
+    - [index.php](#index.php) 项目入口文件
+    - [config.php](#config.php) 数据配置
+
+    ## 谢谢您的查阅,此框架正在持续更新中,请把您的宝贵意见发送至 [![](https://jaywcjlove.github.io/sb/ico/linux.svg)]735305610@qq.com ,我会积极采纳的,谢谢!
