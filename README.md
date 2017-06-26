@@ -17,4 +17,4 @@
     - [index.php](#index.php) 项目入口文件
     - [config.php](#config.php) 数据配置
 
-    ## 谢谢您的查阅,此框架正在持续更新中,请把您的宝贵意见发送至 [![](https://jaywcjlove.github.io/sb/ico/linux.svg)]735305610@qq.com ,我会积极采纳的,谢谢!
+    ## 谢谢您的查阅,此框架正在持续更新中,请把您的宝贵意见发送至 735305610@qq.com(http://www.baidu.com) ,我会积极采纳的,谢谢!
