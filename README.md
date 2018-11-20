@@ -1,20 +1,20 @@
-## Ä¿Â¼
-- [frame](#frame) ÏîÄ¿Ä¿Â¼
-    - [MinPHP](#MinPHP) ¿ò¼ÜÄ¿Â¼
-        - [common](#common) ¹«¹²·½·¨Ä¿Â¼
-            - [common.php](#common.php) ¹«¹²·½·¨
-        - [core](#core) ºËÐÄ´úÂë
-            - [Action.class.php](#Action.class.php) ¿ØÖÆÆ÷¸¸Àà
-            - [App.class.php](#App.class.php) ¿ò¼ÜºËÐÄÔËÐÐÈë¿Ú
-            - [Dd.class.php](#Dd.class.php) Êý¾Ý¿â²Ù×÷Àà
-            - [Error.class.php](#Error.class.php) ´íÎóÐÅÏ¢Àà
-            - [Log.class.php](#Log.class.php) ÈÕÖ¾Àà
-            - [Model.class.php](#Model.class.php) Ä£ÐÍ¸¸Àà
-            - [View.class.php](#View.class.php) ÊÓÍ¼¸¸Àà
-        - [lang](#lang) ÓïÑÔ°ü
-            - [tip.php] (#tip.php) ÏµÍ³ÌáÊ¾ÎÄ¼þ
-        - [MinPHP.php] (#MinPHP.php) ¿ò¼ÜÈë¿ÚÎÄ¼þ
-    - [index.php](#index.php) ÏîÄ¿Èë¿ÚÎÄ¼þ
-    - [config.php](#config.php) Êý¾ÝÅäÖÃ
+## ç›®å½•
+- [frame](#frame) é¡¹ç›®ç›®å½•
+    - [MinPHP](#MinPHP) æ¡†æž¶ç›®å½•
+        - [common](#common) å…¬å…±æ–¹æ³•ç›®å½•
+            - [common.php](#common.php) å…¬å…±æ–¹æ³•
+        - [core](#core) æ ¸å¿ƒä»£ç 
+            - [Action.class.php](#Action.class.php) æŽ§åˆ¶å™¨çˆ¶ç±»
+            - [App.class.php](#App.class.php) æ¡†æž¶æ ¸å¿ƒè¿è¡Œå…¥å£
+            - [Dd.class.php](#Dd.class.php) æ•°æ®åº“æ“ä½œç±»
+            - [Error.class.php](#Error.class.php) é”™è¯¯ä¿¡æ¯ç±»
+            - [Log.class.php](#Log.class.php) æ—¥å¿—ç±»
+            - [Model.class.php](#Model.class.php) æ¨¡åž‹çˆ¶ç±»
+            - [View.class.php](#View.class.php) è§†å›¾çˆ¶ç±»
+        - [lang](#lang) è¯­è¨€åŒ…
+            - [tip.php] (#tip.php) ç³»ç»Ÿæç¤ºæ–‡ä»¶
+        - [MinPHP.php] (#MinPHP.php) æ¡†æž¶å…¥å£æ–‡ä»¶
+    - [index.php](#index.php) é¡¹ç›®å…¥å£æ–‡ä»¶
+    - [config.php](#config.php) æ•°æ®é…ç½®
 
-    Ð»Ð»ÄúµÄ²éÔÄ,´Ë¿ò¼ÜÕýÔÚ³ÖÐø¸üÐÂÖÐ,Çë°ÑÄúµÄ±¦¹óÒâ¼û·¢ËÍÖÁ[735305610@qq.com](https://mail.qq.com/),ÎÒ»á»ý¼«²ÉÄÉµÄ,Ð»Ð»!
+    è°¢è°¢æ‚¨çš„æŸ¥é˜…,æ­¤æ¡†æž¶æ­£åœ¨æŒç»­æ›´æ–°ä¸­,è¯·æŠŠæ‚¨çš„å®è´µæ„è§å‘é€è‡³[735305610@qq.com](https://mail.qq.com/),æˆ‘ä¼šç§¯æžé‡‡çº³çš„,è°¢è°¢!

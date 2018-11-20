@@ -168,7 +168,7 @@ class App
 			CORE_PATH.'/Action.class.php' ,
 			CORE_PATH.'/Model.class.php' ,
 			CORE_PATH.'/Db.class.php' ,
-			CORE_PATH.'/Error.class.php' ,
+			//CORE_PATH.'/Error.class.php' ,
 			CORE_PATH.'/Log.class.php' ,
 			CORE_PATH.'/View.class.php' ,
 		] ;
@@ -182,7 +182,6 @@ class App
 		if(!empty($db_conf)) {
 			define('DB_CONF',json_encode($db_conf,true)) ;
 		}
-
 	}
 
 	# 语言设置

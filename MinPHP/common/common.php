@@ -3,7 +3,7 @@
 /*系统方法*/
 
 # 调试打印
-function pr()
+function dd()
 {
     if(func_get_args()) {
         echo '<pre>' ;

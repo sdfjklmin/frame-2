@@ -9,7 +9,7 @@ class IndexController extends Action
     {
         $d = module('Index')->index() ;
         $this->assign('info',$d) ;
-        $this->dis('show') ;
+        $this->dis('index') ;
     }
 
     public function abc()

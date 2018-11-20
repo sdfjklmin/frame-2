@@ -10,7 +10,7 @@ class View{
 
         # 对应页面
         $v = MONITOR ; # 文件夹
-        $h = METHOD ;     # 请求页面
+        $h = METHOD ;  # 请求页面
 
         if($str) {
             if(strpos($str,'/') === false) {

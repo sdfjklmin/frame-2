@@ -3,7 +3,8 @@
 define('BASE_URL',__DIR__) ;
 define('VIEWS','/view');
 # 配置引入
-require 'MinPHP/MinPHP.php' ;
+require './MinPHP/core/Loading.class.php' ;
+require './MinPHP/MinPHP.php' ;
 
 
 

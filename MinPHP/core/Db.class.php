@@ -54,7 +54,7 @@ class Db
             pr_e('数据库配置引入错误');
         }
         # 表前缀
-        $this->tabFix = ( $this->config['DB_FIX'] ? $this->config['DB_FIX'] : '' ) ;
+        $this->tabFix = ( $this->config['DB_FIX'] ?? '' ) ;
         unset($this->config['DB_FIX']);
         # 数据表名
         if(!empty($name)) {
